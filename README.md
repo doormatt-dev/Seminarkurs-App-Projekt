@@ -1,4 +1,4 @@
-# Seminarkus-App-Projekt
+# Seminarkurs-App-Projekt
 ## Android app created in Unity for a school project
 
 ___________________________

@@ -2,6 +2,8 @@
 ## Android app created in Unity for a school project
 
 ___________________________
+-`git status` will tell you whether there are changes to be commitet, you don't have the same version as the online repository or if everything is up to date.
+
 -For committing use this command:
 `git add [files to commit]` (file names separated by spaces)
 or

@@ -1,5 +1,5 @@
 {
-    "name": "Flight controls",
+    "name": "FlightControls",
     "maps": [
         {
             "name": "Flight",
@@ -259,7 +259,7 @@
                 {
                     "name": "negative",
                     "id": "e11e88a8-8e04-4bb8-85e4-7b4daee57800",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "Phone Flight",
@@ -270,7 +270,7 @@
                 {
                     "name": "positive",
                     "id": "20085ad2-bbfa-4dac-8904-b3db9731a8ea",
-                    "path": "<Keyboard>/d",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "Phone Flight",
@@ -290,7 +290,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
+                    "name": "positive",
                     "id": "3d9bb518-91b5-4a3a-bc75-b3108d6aaace",
                     "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
@@ -301,7 +301,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "positive",
+                    "name": "negative",
                     "id": "103dee51-1763-484a-9fbc-e63551cda826",
                     "path": "<Gamepad>/leftStick/right",
                     "interactions": "",

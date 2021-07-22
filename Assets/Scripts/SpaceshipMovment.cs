@@ -14,6 +14,7 @@ public class SpaceshipMovment : MonoBehaviour
     float rollStrength;
     Vector3 deltaMove;
     Vector3 deltaRotation;
+    Rigidbody rigBody;
 
     //Input fields
     [SerializeField] float Speed;
@@ -39,20 +40,34 @@ public class SpaceshipMovment : MonoBehaviour
         flightControls.Flight.Roll.canceled += ctx => rollStrength = 0f;
     }
     // Start is called before the first frame update
+    void Start()
+    {
+        rigBody = GetComponent<Rigidbody>();
+    }
     void OnEnable()
     {
         flightControls.Flight.Enable();
     }
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         deltaMove = new Vector3(0f,0f,movmentStrength) * Time.deltaTime * Speed;
 
         deltaRotation = new Vector3(pitchStrength,yawStrength,rollStrength) * Time.deltaTime * RotationSpeed;
 
-        transform.Translate(deltaMove,Space.Self);
-        transform.Rotate(deltaRotation,Space.Self);
+        //transform.Translate(deltaMove,Space.Self);
+        //transform.Rotate(deltaRotation,Space.Self);
+    }*/
+
+    void FixedUpdate()
+    {
+        deltaMove = new Vector3(0f,0f,movmentStrength) * Speed;
+
+        deltaRotation = new Vector3(pitchStrength,yawStrength,rollStrength) * RotationSpeed;
+
+        rigBody.AddRelativeForce(deltaMove,ForceMode.Force);
+        rigBody.AddRelativeTorque(deltaRotation,ForceMode.Force);
     }
 
     void OnDisable()

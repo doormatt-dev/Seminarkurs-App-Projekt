@@ -110,7 +110,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Throttle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -121,7 +121,40 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
+                    ""action"": ""Throttle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""touch right joystick"",
+                    ""id"": ""5aff85d7-1a67-4ea5-9a5e-3ee0e4726832"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throttle"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""c91dc087-c92a-4b98-a828-ca5441900c8c"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Phone touch flight"",
+                    ""action"": ""Throttle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""006492e8-1567-4e93-96e5-86e75707975c"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Phone touch flight"",
                     ""action"": ""Throttle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -143,7 +176,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Pitch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -154,7 +187,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Pitch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -176,7 +209,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/leftStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Pitch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -187,7 +220,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Pitch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -259,6 +292,39 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""touch right joystick"",
+                    ""id"": ""fed7c97d-ee2e-4577-8a80-ce8433dc1cfa"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Yaw"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""b318dadf-9cb9-49f8-b0bf-0081e7ab22dc"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Phone touch flight"",
+                    ""action"": ""Yaw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""26bd7910-eddc-4768-adec-1885c8d62a19"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Phone touch flight"",
+                    ""action"": ""Yaw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": ""keyboard a/d"",
                     ""id"": ""a2083674-0521-4184-8b8f-0929e37718ad"",
                     ""path"": ""1DAxis"",
@@ -275,7 +341,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Roll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -286,7 +352,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Roll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -308,7 +374,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Roll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -319,7 +385,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Roll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -330,7 +396,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -341,7 +407,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -408,7 +474,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Up"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -419,7 +485,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Up"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -430,7 +496,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Up"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -441,7 +507,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Up"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -452,7 +518,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Down"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -463,7 +529,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Down"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -474,7 +540,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/dpad/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Down"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -485,7 +551,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/leftStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Down"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -496,7 +562,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Left"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -507,7 +573,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Left"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -518,7 +584,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/dpad/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Left"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -529,7 +595,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Left"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -540,7 +606,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -551,7 +617,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -562,7 +628,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/dpad/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -573,7 +639,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -584,7 +650,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -595,7 +661,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -606,7 +672,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Back"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -617,7 +683,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Phone Flight"",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
                     ""action"": ""Back"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -630,6 +696,22 @@ public class @FlightControls : IInputActionCollection, IDisposable
             ""name"": ""Phone Flight"",
             ""bindingGroup"": ""Phone Flight"",
             ""devices"": []
+        },
+        {
+            ""name"": ""Phone touch flight"",
+            ""bindingGroup"": ""Phone touch flight"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
         }
     ]
 }");
@@ -838,6 +920,15 @@ public class @FlightControls : IInputActionCollection, IDisposable
         {
             if (m_PhoneFlightSchemeIndex == -1) m_PhoneFlightSchemeIndex = asset.FindControlSchemeIndex("Phone Flight");
             return asset.controlSchemes[m_PhoneFlightSchemeIndex];
+        }
+    }
+    private int m_PhonetouchflightSchemeIndex = -1;
+    public InputControlScheme PhonetouchflightScheme
+    {
+        get
+        {
+            if (m_PhonetouchflightSchemeIndex == -1) m_PhonetouchflightSchemeIndex = asset.FindControlSchemeIndex("Phone touch flight");
+            return asset.controlSchemes[m_PhonetouchflightSchemeIndex];
         }
     }
     public interface IFlightActions

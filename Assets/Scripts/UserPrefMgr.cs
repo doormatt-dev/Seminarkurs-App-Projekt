@@ -26,7 +26,7 @@ public class UserPrefMgr : MonoBehaviour
         }
 
         //Obtain User Prefs
-        graphicsLevel = PlayerPrefs.GetInt("graphicsLevel", 2);
+        graphicsLevel = Mathf.Clamp(PlayerPrefs.GetInt("graphicsLevel", 2), 0, 3);
         saveSlotNr = PlayerPrefs.GetInt("saveSlot",0);
         showOnScreenControls = (PlayerPrefs.GetInt("showOSC",1) != 0);
 
@@ -53,6 +53,20 @@ public class UserPrefMgr : MonoBehaviour
         
 
 
+    }
+
+    void OnGUI(){ //this is just for testing of the basic functionality
+        if(GUI.Button(new Rect(Screen.width /2 - 50, Screen.height -80, 100, 30), "toggle OSC"))
+        {
+            showOnScreenControls = !showOnScreenControls;
+            if(showOnScreenControls)
+            {
+                PlayerPrefs.SetInt("showOSC", 1);
+            }else{
+                PlayerPrefs.SetInt("showOSC", 0);
+            }
+            
+        }
     }
     
 }

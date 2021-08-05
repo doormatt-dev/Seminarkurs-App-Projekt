@@ -10,4 +10,9 @@ public class loadGame : MonoBehaviour
         Debug.Log("loading scene 1");
         SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
+
+    public void quitApp()
+    {
+        UnityEngine.Application.Quit();
+    }
 }

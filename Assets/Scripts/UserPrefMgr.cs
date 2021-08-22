@@ -50,23 +50,6 @@ public class UserPrefMgr : MonoBehaviour
         }else{
             Debug.Log("No osc present");
         }
-        
-
-
-    }
-
-    void OnGUI(){ //this is just for testing of the basic functionality
-        if(GUI.Button(new Rect(Screen.width /2 - 50, Screen.height -80, 100, 30), "toggle OSC"))
-        {
-            showOnScreenControls = !showOnScreenControls;
-            if(showOnScreenControls)
-            {
-                PlayerPrefs.SetInt("showOSC", 1);
-            }else{
-                PlayerPrefs.SetInt("showOSC", 0);
-            }
-            
-        }
     }
     
 }

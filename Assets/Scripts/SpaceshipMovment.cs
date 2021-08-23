@@ -12,13 +12,23 @@ public class SpaceshipMovment : MonoBehaviour
     float yawStrength;
     float pitchStrength;
     float rollStrength;
+    float zoomedness;
     Vector3 deltaMove;
     Vector3 deltaRotation;
+    Quaternion cameraRotation;
     Rigidbody rigBody;
 
     //Input fields
     [SerializeField] float Speed;
     [SerializeField] float RotationSpeed;
+    [SerializeField] GameObject MainCam;
+    [SerializeField] Vector3 Close_pos;
+    [SerializeField] Vector3 Close_rot;
+    [SerializeField] float Close_fov;
+    [SerializeField] Vector3 Far_pos;
+    [SerializeField] Vector3 Far_rot;
+    [SerializeField] float Far_fov;
+    [SerializeField] Vector3 Rotation_freedom;
 
     //Input System
     FlightControls flightControls;
@@ -50,15 +60,15 @@ public class SpaceshipMovment : MonoBehaviour
     }
 
     // Update is called once per frame
-    /*void Update()
+    void Update()
     {
-        deltaMove = new Vector3(0f,0f,movmentStrength) * Time.deltaTime * Speed;
-
-        deltaRotation = new Vector3(pitchStrength,yawStrength,rollStrength) * Time.deltaTime * RotationSpeed;
-
-        //transform.Translate(deltaMove,Space.Self);
-        //transform.Rotate(deltaRotation,Space.Self);
-    }*/
+        //cameraRotation.SetLookRotation(new Vector3(Rotation_freedom.x * pitchStrength, Rotation_freedom.y * yawStrength, Rotation_freedom.z * rollStrength));
+        zoomedness = Mathf.Clamp(rigBody.velocity.magnitude / 20.0f - 1.0f, 0.0f, 1.0f);
+        Vector3 newpos = transform.position + (transform.rotation * Vector3.Lerp(Close_pos,Far_pos,zoomedness));
+        Quaternion newrot = transform.rotation * Quaternion.Euler(Vector3.Lerp(Close_rot,Far_rot,zoomedness));// + cameraRotation.eulerAngles.normalized);
+        MainCam.transform.SetPositionAndRotation(newpos,newrot);
+        Camera.main.fieldOfView = Close_fov + (Far_fov - Close_fov) * zoomedness;
+    }
 
     void FixedUpdate()
     {

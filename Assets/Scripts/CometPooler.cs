@@ -7,7 +7,7 @@ public class CometPooler : MonoBehaviour
     [SerializeField] GameObject Comets;
     [SerializeField] int Pool_size;
     [SerializeField] float despawndistance;
-    [SerializeField] float spawndistance;
+    [SerializeField] public float spawndistance;
     [SerializeField] GameObject Player;
 
     public static CometPooler CometPool;
@@ -31,7 +31,7 @@ public class CometPooler : MonoBehaviour
     }
 
 
-    public GameObject GetComet(Vector3 Position, Quaternion Rotation)
+    public GameObject GetComet()
     {
         for(int i = 0; i < Pool_size; i++)
         {

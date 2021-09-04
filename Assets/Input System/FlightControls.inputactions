@@ -44,6 +44,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Shoot",
+                    "type": "Button",
+                    "id": "b547ee06-7a26-4735-9ae6-bf1fe8e87748",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -396,6 +404,28 @@
                     "processors": "",
                     "groups": "Phone Flight;Phone touch flight",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "864d2dc0-0b97-4002-b2d6-df5114bd8c4b",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Phone Flight",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "961716e1-7466-4e8a-afba-dcce80d58d97",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Phone Flight",
+                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

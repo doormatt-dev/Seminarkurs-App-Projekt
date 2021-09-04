@@ -57,6 +57,14 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""b547ee06-7a26-4735-9ae6-bf1fe8e87748"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -411,6 +419,28 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""864d2dc0-0b97-4002-b2d6-df5114bd8c4b"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Phone Flight"",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""961716e1-7466-4e8a-afba-dcce80d58d97"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Phone Flight"",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -722,6 +752,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
         m_Flight_Yaw = m_Flight.FindAction("Yaw", throwIfNotFound: true);
         m_Flight_Roll = m_Flight.FindAction("Roll", throwIfNotFound: true);
         m_Flight_Pause = m_Flight.FindAction("Pause", throwIfNotFound: true);
+        m_Flight_Shoot = m_Flight.FindAction("Shoot", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Up = m_Menu.FindAction("Up", throwIfNotFound: true);
@@ -784,6 +815,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Flight_Yaw;
     private readonly InputAction m_Flight_Roll;
     private readonly InputAction m_Flight_Pause;
+    private readonly InputAction m_Flight_Shoot;
     public struct FlightActions
     {
         private @FlightControls m_Wrapper;
@@ -793,6 +825,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
         public InputAction @Yaw => m_Wrapper.m_Flight_Yaw;
         public InputAction @Roll => m_Wrapper.m_Flight_Roll;
         public InputAction @Pause => m_Wrapper.m_Flight_Pause;
+        public InputAction @Shoot => m_Wrapper.m_Flight_Shoot;
         public InputActionMap Get() { return m_Wrapper.m_Flight; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -817,6 +850,9 @@ public class @FlightControls : IInputActionCollection, IDisposable
                 @Pause.started -= m_Wrapper.m_FlightActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_FlightActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_FlightActionsCallbackInterface.OnPause;
+                @Shoot.started -= m_Wrapper.m_FlightActionsCallbackInterface.OnShoot;
+                @Shoot.performed -= m_Wrapper.m_FlightActionsCallbackInterface.OnShoot;
+                @Shoot.canceled -= m_Wrapper.m_FlightActionsCallbackInterface.OnShoot;
             }
             m_Wrapper.m_FlightActionsCallbackInterface = instance;
             if (instance != null)
@@ -836,6 +872,9 @@ public class @FlightControls : IInputActionCollection, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
             }
         }
     }
@@ -938,6 +977,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
         void OnYaw(InputAction.CallbackContext context);
         void OnRoll(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

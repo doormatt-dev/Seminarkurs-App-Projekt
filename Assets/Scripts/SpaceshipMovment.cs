@@ -7,8 +7,8 @@ using UnityEngine.InputSystem;
 public class SpaceshipMovment : MonoBehaviour
 
 {
-    //Private variables
-    float movmentStrength;
+    //(Private) variables
+    public float movmentStrength;
     float yawStrength;
     float pitchStrength;
     float rollStrength;
@@ -48,6 +48,9 @@ public class SpaceshipMovment : MonoBehaviour
         //roll
         flightControls.Flight.Roll.performed += ctx => rollStrength = ctx.ReadValue<float>();
         flightControls.Flight.Roll.canceled += ctx => rollStrength = 0f;
+        //spawn an obstacle
+        flightControls.Flight.Shoot.performed += ctx => SpawnAnObstacle();
+        //flightControls.Flight.Shoot.cancelled += ctx => ;
     }
     // Start is called before the first frame update
     void Start()
@@ -83,5 +86,15 @@ public class SpaceshipMovment : MonoBehaviour
     void OnDisable()
     {
         flightControls.Flight.Disable();
+    }
+
+    void SpawnAnObstacle()
+    {
+        GameObject newComet = CometPooler.CometPool.GetComet();
+        if(newComet != null)
+        {
+            newComet.transform.SetPositionAndRotation(transform.position + transform.forward * CometPooler.CometPool.spawndistance, transform.rotation);
+            newComet.SetActive(true);
+        }
     }
 }

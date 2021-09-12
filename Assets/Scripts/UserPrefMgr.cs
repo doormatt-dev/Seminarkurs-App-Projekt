@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class UserPrefMgr : MonoBehaviour
 {
@@ -10,11 +12,26 @@ public class UserPrefMgr : MonoBehaviour
     public int saveSlotNr;
     public bool showOnScreenControls;
 
-    private GameObject OSC;
+     GameObject OSC;
+     string currentSceneName;
 
     void Awake()
     {
         //as soon as this Object exists check if there is already one and then destroy self or become the only one
+        currentSceneName = SceneManager.GetActiveScene().name;
+        if(currentSceneName == "InGame")
+        {
+            Screen.orientation = ScreenOrientation.Landscape;
+            Debug.Log("Rotation set to only Landscape");
+        }else if(currentSceneName == "Startmenu"){
+            Screen.orientation = ScreenOrientation.AutoRotation;
+            Screen.autorotateToPortraitUpsideDown = false;
+            Debug.Log("Rotation set to Autorotate");
+        }else{
+            Screen.orientation = ScreenOrientation.Portrait;
+            Debug.LogWarning("Unsupported Scene, what rotation settings should it have?");
+        }
+        
         if(settings == null)
         {
             DontDestroyOnLoad(gameObject);
@@ -50,6 +67,11 @@ public class UserPrefMgr : MonoBehaviour
         }else{
             Debug.Log("No osc present");
         }
+    }
+    
+    void OnGUI()
+    {
+        GUI.Box(new Rect(Screen.width * 0.9f,Screen.height * 0.05f, 80.0f, 30.0f), (1.0f/ Time.deltaTime).ToString());
     }
     
 }

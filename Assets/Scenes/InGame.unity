@@ -779,7 +779,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &973873369
 RectTransform:
   m_ObjectHideFlags: 0
@@ -813,7 +813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.017399436, g: 0.07459063, b: 0.16037738, a: 0.9137255}
+  m_Color: {r: 0.017399436, g: 0.07459063, b: 0.16037738, a: 0.7176471}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6303,7 +6303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac23d53cd347f244841993888989b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movmentStrength: 0
   Speed: 80
   RotationSpeed: 3
   MainCam: {fileID: 1401923357}
@@ -6314,6 +6313,17 @@ MonoBehaviour:
   Far_rot: {x: 10, y: 0, z: 0}
   Far_fov: 90
   Rotation_freedom: {x: 20, y: 20, z: 20}
+  Spaceships:
+  - shipName: cube
+    menuImage: {fileID: 2800000, guid: f254cdaa5bf4b884bb526cd11156a322, type: 3}
+    shipPrefab: {fileID: 0}
+    mass: 4
+    acceleration: 80
+    drag: 0.5
+    angularAcceleration: 3
+    angularDrag: 3
+    maxHP: 100
+    animate: 1
 --- !u!65 &1428248280
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11431,7 +11441,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1000, y: 0}
+  m_SizeDelta: {x: 480, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1786401846
 MonoBehaviour:
@@ -11446,7 +11456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.87058824}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.9490196}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11794,6 +11804,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: User Pref Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815675642781090918, guid: 6436ca893405ff74ebd275502de3e63c,
+        type: 3}
+      propertyPath: graphicsLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815675642781090918, guid: 6436ca893405ff74ebd275502de3e63c,
+        type: 3}
+      propertyPath: showOnScreenControls
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7815675642781090919, guid: 6436ca893405ff74ebd275502de3e63c,
         type: 3}

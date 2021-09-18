@@ -3,20 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
+[RequireComponent(typeof(Rigidbody))]
 public class SpaceshipMovment : MonoBehaviour
 
 {
     //(Private) variables
-    public float movmentStrength;
+    float movmentStrength;
     float yawStrength;
     float pitchStrength;
     float rollStrength;
     float zoomedness;
+    int currentShipID;
     Vector3 deltaMove;
     Vector3 deltaRotation;
     Quaternion cameraRotation;
     Rigidbody rigBody;
+    GameObject childShip;
 
     //Input fields
     [SerializeField] float Speed;
@@ -29,6 +31,7 @@ public class SpaceshipMovment : MonoBehaviour
     [SerializeField] Vector3 Far_rot;
     [SerializeField] float Far_fov;
     [SerializeField] Vector3 Rotation_freedom;
+    [SerializeField] SpaceshipDataobject[] Spaceships;
 
     //Input System
     FlightControls flightControls;
@@ -96,5 +99,30 @@ public class SpaceshipMovment : MonoBehaviour
             newComet.transform.SetPositionAndRotation(transform.position + transform.forward * CometPooler.CometPool.spawndistance, transform.rotation);
             newComet.SetActive(true);
         }
+    }
+
+    void SetShip(int newShipID)
+    {
+        if(newShipID == currentShipID){
+            Debug.Log("Ship " + currentShipID + " is already selected!");
+            return;
+        }
+
+        Destroy(childShip);
+        childShip = Spaceships[newShipID].shipPrefab;
+        Instantiate(childShip, Vector3.zero, Quaternion.Euler(Vector3.forward));
+        childShip.transform.SetParent(this.transform);
+        childShip.SetActive(true);
+
+
+        rigBody.mass = Spaceships[newShipID].mass;
+        Speed = Spaceships[newShipID].acceleration;
+        rigBody.drag = Spaceships[newShipID].drag;
+        RotationSpeed = Spaceships[newShipID].angularAcceleration;
+        rigBody.angularDrag = Spaceships[newShipID].angularDrag;
+
+        currentShipID = newShipID;
+
+        Debug.Log("Ship set to " + newShipID + "and Paramerers loaded!");
     }
 }

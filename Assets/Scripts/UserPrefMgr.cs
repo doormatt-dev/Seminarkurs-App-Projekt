@@ -18,6 +18,16 @@ public class UserPrefMgr : MonoBehaviour
     void Awake()
     {
         //as soon as this Object exists check if there is already one and then destroy self or become the only one
+        if(settings == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            settings = this;
+            Debug.Log("New UserPrefMgr set");
+        }else if(settings != this){
+            Debug.Log("UserPrefMgr duplicate destroyed");
+            Destroy(gameObject);
+        }
+        
         currentSceneName = SceneManager.GetActiveScene().name;
         if(currentSceneName == "InGame")
         {
@@ -31,22 +41,17 @@ public class UserPrefMgr : MonoBehaviour
             Screen.orientation = ScreenOrientation.Portrait;
             Debug.LogWarning("Unsupported Scene, what rotation settings should it have?");
         }
-        
-        if(settings == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            settings = this;
-            Debug.Log("New UserPrefMgr set");
-        }else if(settings != this){
-            Debug.Log("UserPrefMgr duplicate destroyed");
-            Destroy(gameObject);
-        }
 
         //Obtain User Prefs
         graphicsLevel = Mathf.Clamp(PlayerPrefs.GetInt("graphicsLevel", 2), 0, 3);
         saveSlotNr = PlayerPrefs.GetInt("saveSlot",0);
         showOnScreenControls = (PlayerPrefs.GetInt("showOSC",1) != 0);
 
+        UpdateSettings();
+    }
+
+    void UpdateSettings()
+    {
         //Set quality level accordingly
         if(UnityEngine.QualitySettings.GetQualityLevel() != graphicsLevel)
         {
@@ -67,6 +72,23 @@ public class UserPrefMgr : MonoBehaviour
         }else{
             Debug.Log("No osc present");
         }
+        SaveSettings();
+
+    }
+
+    void SaveSettings()
+    {
+
+        PlayerPrefs.SetInt("graphicsLevel", graphicsLevel);
+        PlayerPrefs.SetInt("saveSlot", saveSlotNr);
+        if(showOnScreenControls)
+        {
+            PlayerPrefs.SetInt("showOSC", 1);
+        }else{
+            PlayerPrefs.SetInt("showOSC", 0);
+        }
+        
+
     }
     
     void OnGUI()

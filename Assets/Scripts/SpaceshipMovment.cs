@@ -8,19 +8,18 @@ public class SpaceshipMovment : MonoBehaviour
 
 {
     //(Private) variables
-    float movmentStrength;
-    float yawStrength;
-    float pitchStrength;
-    float rollStrength;
-    float zoomedness;
+    float movmentStrength, yawStrength,pitchStrength,rollStrength,zoomedness,currentYaw,currentMovstr,currentPitch,currentRoll,yawVelocity,movstrVelocity,rollVelocity,pitchVelocity,smoothtime = 3.0f,maxSmoothSpeed = 5.0f;
+
     int currentShipID;
     Vector3 deltaMove;
     Vector3 deltaRotation;
     Quaternion cameraRotation;
     Rigidbody rigBody;
     GameObject childShip;
+    Animator currentAnimator;
 
     //Input fields
+    [SerializeField] Transform self;
     [SerializeField] float Speed;
     [SerializeField] float RotationSpeed;
     [SerializeField] GameObject MainCam;
@@ -59,6 +58,7 @@ public class SpaceshipMovment : MonoBehaviour
     void Start()
     {
         rigBody = GetComponent<Rigidbody>();
+        SetShip(currentShipID);
     }
     void OnEnable()
     {
@@ -74,6 +74,20 @@ public class SpaceshipMovment : MonoBehaviour
         Quaternion newrot = transform.rotation * Quaternion.Euler(Vector3.Lerp(Close_rot,Far_rot,zoomedness));// + cameraRotation.eulerAngles.normalized);
         MainCam.transform.SetPositionAndRotation(newpos,newrot);
         Camera.main.fieldOfView = Close_fov + (Far_fov - Close_fov) * zoomedness;
+
+        if(currentAnimator != null)
+        {
+            currentMovstr = Mathf.SmoothDamp(currentMovstr,movmentStrength,ref movstrVelocity,smoothtime/*,maxSmoothSpeed*/);
+            currentYaw = Mathf.SmoothDamp(currentYaw,yawStrength,ref yawVelocity,smoothtime/*,maxSmoothSpeed'*/);
+            currentPitch = Mathf.SmoothDamp(currentPitch,pitchStrength,ref pitchVelocity,smoothtime/*,maxSmoothSpeed*/);
+            currentRoll = Mathf.SmoothDamp(currentRoll,rollStrength,ref rollVelocity,smoothtime/*,maxSmoothSpeed*/);
+
+            currentAnimator.SetFloat("booster",Mathf.Clamp(currentMovstr,0,1));
+            currentAnimator.SetFloat("turnStrength",currentYaw);
+            currentAnimator.SetFloat("pitchStrength",-currentPitch);
+            currentAnimator.SetFloat("rollStrength",-currentRoll);
+        }
+
     }
 
     void FixedUpdate()
@@ -101,17 +115,19 @@ public class SpaceshipMovment : MonoBehaviour
         }
     }
 
-    void SetShip(int newShipID)
+    public void SetShip(int newShipID)
     {
-        if(newShipID == currentShipID){
+        /*if(newShipID == currentShipID){
             Debug.Log("Ship " + currentShipID + " is already selected!");
             return;
-        }
+        }*/
 
         Destroy(childShip);
-        childShip = Spaceships[newShipID].shipPrefab;
-        Instantiate(childShip, Vector3.zero, Quaternion.Euler(Vector3.forward));
-        childShip.transform.SetParent(this.transform);
+        
+        childShip = Instantiate(Spaceships[newShipID].shipPrefab, transform.position, Quaternion.Euler(transform.forward),self);
+        childShip.transform.localRotation = new Quaternion(0,0,0,0);
+        //childShip.transform.SetParent(self.transform);
+        currentAnimator = childShip.GetComponent<Animator>();
         childShip.SetActive(true);
 
 
@@ -120,9 +136,20 @@ public class SpaceshipMovment : MonoBehaviour
         rigBody.drag = Spaceships[newShipID].drag;
         RotationSpeed = Spaceships[newShipID].angularAcceleration;
         rigBody.angularDrag = Spaceships[newShipID].angularDrag;
+        smoothtime = Spaceships[newShipID].smoothtime;
 
         currentShipID = newShipID;
 
-        Debug.Log("Ship set to " + newShipID + "and Paramerers loaded!");
+        Debug.Log("Ship set to '" + Spaceships[newShipID].shipName + "' (" + newShipID + ") and Paramerers loaded!");
+    }
+    
+    public void cycleShip(){
+        int newShipID = currentShipID + 1;
+        if(newShipID >= Spaceships.Length)
+        {
+            newShipID = 0;
+        }
+        Debug.Log("Switching to next ship (shipID " + newShipID + " )");
+        SetShip(newShipID);
     }
 }

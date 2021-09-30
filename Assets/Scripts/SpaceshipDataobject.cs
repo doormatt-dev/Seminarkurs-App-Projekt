@@ -12,6 +12,7 @@ public class SpaceshipDataobject
     public float drag;
     public float angularAcceleration;
     public float angularDrag;
+    public float smoothtime;
     public float maxHP;
     public bool animate;
 }

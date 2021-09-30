@@ -64,7 +64,7 @@ public class UserPrefMgr : MonoBehaviour
         Debug.Log("Save slot is " + saveSlotNr);
 
         //Show or hide the on screen controls if there are any
-        OSC = GameObject.Find("/UI Canvas/Onscreen Controls");
+        OSC = GameObject.Find("/UI Canvas/OSC");
         if(OSC != null)
         {
             OSC.SetActive(showOnScreenControls);

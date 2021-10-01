@@ -296,7 +296,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 107972145}
   m_OnClick:
     m_PersistentCalls:
@@ -12272,10 +12272,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Comets: {fileID: 4203503820323958726, guid: f6f7bc0fd97747f4eaf80fc79e048f41, type: 3}
-  Pool_size: 10
+  Pool_size: 40
   despawndistance: 150
   spawndistance: 120
   Player: {fileID: 1428248278}
+  spawnAutomatically: 1
+  minTimeBetweenSpawns: 0.4
+  minDistanceMovedBetweenSpawns: 10
+  minDistanceBetweenCometSpawns: 10
   cometPool: []
 --- !u!1001 &7815675642282936733
 PrefabInstance:

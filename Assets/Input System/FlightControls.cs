@@ -65,6 +65,14 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Swapship"",
+                    ""type"": ""Button"",
+                    ""id"": ""6c244377-82dc-4f4f-9169-0f6bf7ed5edd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -441,6 +449,28 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9dd8fe7c-2930-4208-a01d-0fa3b9f963c8"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
+                    ""action"": ""Swapship"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fe8b076f-4dfe-45c9-ac6c-d5a98498d6d6"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Phone Flight;Phone touch flight"",
+                    ""action"": ""Swapship"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -753,6 +783,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
         m_Flight_Roll = m_Flight.FindAction("Roll", throwIfNotFound: true);
         m_Flight_Pause = m_Flight.FindAction("Pause", throwIfNotFound: true);
         m_Flight_Shoot = m_Flight.FindAction("Shoot", throwIfNotFound: true);
+        m_Flight_Swapship = m_Flight.FindAction("Swapship", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Up = m_Menu.FindAction("Up", throwIfNotFound: true);
@@ -816,6 +847,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Flight_Roll;
     private readonly InputAction m_Flight_Pause;
     private readonly InputAction m_Flight_Shoot;
+    private readonly InputAction m_Flight_Swapship;
     public struct FlightActions
     {
         private @FlightControls m_Wrapper;
@@ -826,6 +858,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
         public InputAction @Roll => m_Wrapper.m_Flight_Roll;
         public InputAction @Pause => m_Wrapper.m_Flight_Pause;
         public InputAction @Shoot => m_Wrapper.m_Flight_Shoot;
+        public InputAction @Swapship => m_Wrapper.m_Flight_Swapship;
         public InputActionMap Get() { return m_Wrapper.m_Flight; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -853,6 +886,9 @@ public class @FlightControls : IInputActionCollection, IDisposable
                 @Shoot.started -= m_Wrapper.m_FlightActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_FlightActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_FlightActionsCallbackInterface.OnShoot;
+                @Swapship.started -= m_Wrapper.m_FlightActionsCallbackInterface.OnSwapship;
+                @Swapship.performed -= m_Wrapper.m_FlightActionsCallbackInterface.OnSwapship;
+                @Swapship.canceled -= m_Wrapper.m_FlightActionsCallbackInterface.OnSwapship;
             }
             m_Wrapper.m_FlightActionsCallbackInterface = instance;
             if (instance != null)
@@ -875,6 +911,9 @@ public class @FlightControls : IInputActionCollection, IDisposable
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
+                @Swapship.started += instance.OnSwapship;
+                @Swapship.performed += instance.OnSwapship;
+                @Swapship.canceled += instance.OnSwapship;
             }
         }
     }
@@ -978,6 +1017,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
         void OnRoll(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnSwapship(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

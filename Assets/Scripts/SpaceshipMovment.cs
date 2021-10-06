@@ -8,7 +8,7 @@ public class SpaceshipMovment : MonoBehaviour
 
 {
     //(Private) variables
-    float movmentStrength, yawStrength,pitchStrength,rollStrength,zoomedness,currentYaw,currentMovstr,currentPitch,currentRoll,yawVelocity,movstrVelocity,rollVelocity,pitchVelocity,smoothtime = 3.0f,maxSmoothSpeed = 5.0f;
+    float movmentStrength, yawStrength,pitchStrength,rollStrength,zoomedness,currentYaw,currentMovstr,currentPitch,currentRoll,yawVelocity,movstrVelocity,rollVelocity,pitchVelocity,smoothtime = 3.0f;
 
     int currentShipID;
     Vector3 deltaMove;
@@ -52,6 +52,7 @@ public class SpaceshipMovment : MonoBehaviour
         flightControls.Flight.Roll.canceled += ctx => rollStrength = 0f;
         //spawn an obstacle
         flightControls.Flight.Shoot.performed += ctx => SpawnAnObstacle();
+        flightControls.Flight.Swapship.performed += ctx => cycleShip();
         //flightControls.Flight.Shoot.cancelled += ctx => ;
     }
     // Start is called before the first frame update

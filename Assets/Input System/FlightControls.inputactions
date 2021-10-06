@@ -52,6 +52,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Swapship",
+                    "type": "Button",
+                    "id": "6c244377-82dc-4f4f-9169-0f6bf7ed5edd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -426,6 +434,28 @@
                     "processors": "",
                     "groups": "Phone Flight",
                     "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9dd8fe7c-2930-4208-a01d-0fa3b9f963c8",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Phone Flight;Phone touch flight",
+                    "action": "Swapship",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fe8b076f-4dfe-45c9-ac6c-d5a98498d6d6",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Phone Flight;Phone touch flight",
+                    "action": "Swapship",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

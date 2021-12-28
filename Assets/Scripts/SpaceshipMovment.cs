@@ -37,6 +37,7 @@ public class SpaceshipMovment : MonoBehaviour
 
     void Awake()
     {
+        //activate bindings for flying
         flightControls = new FlightControls();
         //forwards/backwards
         flightControls.Flight.Throttle.performed += ctx => movmentStrength = ctx.ReadValue<float>();
@@ -58,11 +59,13 @@ public class SpaceshipMovment : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //gets a refrence to it's onw rigid body component, GetComponent shoud be fine as this only happens on load ideally
         rigBody = GetComponent<Rigidbody>();
         SetShip(currentShipID);
     }
     void OnEnable()
     {
+        //when it beomes active, start listening to inputs
         flightControls.Flight.Enable();
     }
 
@@ -70,22 +73,26 @@ public class SpaceshipMovment : MonoBehaviour
     void Update()
     {
         //cameraRotation.SetLookRotation(new Vector3(Rotation_freedom.x * pitchStrength, Rotation_freedom.y * yawStrength, Rotation_freedom.z * rollStrength));
+        //calculate how zoomed out it should be based on speed
         zoomedness = Mathf.Clamp(rigBody.velocity.magnitude / 20.0f - 1.0f, 0.0f, 1.0f);
+        //calculate camera params with linear interpolation from values in the serialised fields
         Vector3 newpos = transform.position + (transform.rotation * Vector3.Lerp(Close_pos,Far_pos,zoomedness));
         Quaternion newrot = transform.rotation * Quaternion.Euler(Vector3.Lerp(Close_rot,Far_rot,zoomedness));// + cameraRotation.eulerAngles.normalized);
         MainCam.transform.SetPositionAndRotation(newpos,newrot);
         Camera.main.fieldOfView = Close_fov + (Far_fov - Close_fov) * zoomedness;
 
-        if(currentAnimator != null)
+        if(currentAnimator != null)//if the ship currently active has an animator
         {
+            //setting animator parameters for flying animations
+            //calculate values first
             currentMovstr = Mathf.SmoothDamp(currentMovstr,movmentStrength,ref movstrVelocity,smoothtime/*,maxSmoothSpeed*/);
             currentYaw = Mathf.SmoothDamp(currentYaw,yawStrength,ref yawVelocity,smoothtime/*,maxSmoothSpeed'*/);
             currentPitch = Mathf.SmoothDamp(currentPitch,pitchStrength,ref pitchVelocity,smoothtime/*,maxSmoothSpeed*/);
             currentRoll = Mathf.SmoothDamp(currentRoll,rollStrength,ref rollVelocity,smoothtime/*,maxSmoothSpeed*/);
-
-            currentAnimator.SetFloat("booster",Mathf.Clamp(currentMovstr,0,1));
+            //and set the parameters
+            currentAnimator.SetFloat("booster",Mathf.Clamp(currentMovstr,0,1));//some should be clamped
             currentAnimator.SetFloat("turnStrength",currentYaw);
-            currentAnimator.SetFloat("pitchStrength",-currentPitch);
+            currentAnimator.SetFloat("pitchStrength",-currentPitch);//some need inversion
             currentAnimator.SetFloat("rollStrength",-currentRoll);
         }
 
@@ -93,20 +100,22 @@ public class SpaceshipMovment : MonoBehaviour
 
     void FixedUpdate()
     {
-        deltaMove = new Vector3(0f,0f,movmentStrength) * Speed;
+        deltaMove = new Vector3(0f,0f,movmentStrength) * Speed;//thottle force vector
 
-        deltaRotation = new Vector3(pitchStrength,yawStrength,rollStrength) * RotationSpeed;
+        deltaRotation = new Vector3(pitchStrength,yawStrength,rollStrength) * RotationSpeed;//angular force for turning and spinning
 
+        //apply them to the rigid body, forces are used because direct movments cause issues with physics
         rigBody.AddRelativeForce(deltaMove,ForceMode.Force);
         rigBody.AddRelativeTorque(deltaRotation,ForceMode.Force);
     }
 
     void OnDisable()
     {
+        //turn off controls when disabled just in case i guess
         flightControls.Flight.Disable();
     }
 
-    void SpawnAnObstacle()
+    void SpawnAnObstacle()//this spawns in random environment stuffs
     {
         GameObject newComet = CometPooler.CometPool.GetComet();
         if(newComet != null)
@@ -117,21 +126,21 @@ public class SpaceshipMovment : MonoBehaviour
     }
 
     public void SetShip(int newShipID)
-    {
+    {//swaps out the ship to a specific one
         /*if(newShipID == currentShipID){
             Debug.Log("Ship " + currentShipID + " is already selected!");
             return;
         }*/
 
-        Destroy(childShip);
+        Destroy(childShip);//remove the old one
         
-        childShip = Instantiate(Spaceships[newShipID].shipPrefab, transform.position, Quaternion.Euler(transform.forward),self);
-        childShip.transform.localRotation = new Quaternion(0,0,0,0);
+        childShip = Instantiate(Spaceships[newShipID].shipPrefab, transform.position, Quaternion.Euler(transform.forward),self);//get a new one from presets
+        childShip.transform.localRotation = new Quaternion(0,0,0,0);//make sure it's pointing forward
         //childShip.transform.SetParent(self.transform);
-        currentAnimator = childShip.GetComponent<Animator>();
-        childShip.SetActive(true);
+        currentAnimator = childShip.GetComponent<Animator>();//get the new animator
+        childShip.SetActive(true);//show the ship to the user
 
-
+        //assign physics parameters and characteristics, basically the handling of the ship
         rigBody.mass = Spaceships[newShipID].mass;
         Speed = Spaceships[newShipID].acceleration;
         rigBody.drag = Spaceships[newShipID].drag;
@@ -139,16 +148,16 @@ public class SpaceshipMovment : MonoBehaviour
         rigBody.angularDrag = Spaceships[newShipID].angularDrag;
         smoothtime = Spaceships[newShipID].smoothtime;
 
-        currentShipID = newShipID;
+        currentShipID = newShipID;//set the current ID
 
         Debug.Log("Ship set to '" + Spaceships[newShipID].shipName + "' (" + newShipID + ") and Paramerers loaded!");
     }
     
-    public void cycleShip(){
-        int newShipID = currentShipID + 1;
-        if(newShipID >= Spaceships.Length)
+    public void cycleShip(){//takes the setShip function to cycle through all available ships
+        int newShipID = currentShipID + 1;//add 1, yes very simple, just take the next one easy
+        if(newShipID >= Spaceships.Length)//check if it's a value in the list
         {
-            newShipID = 0;
+            newShipID = 0;//if not then go back to the start
         }
         Debug.Log("Switching to next ship (shipID " + newShipID + " )");
         SetShip(newShipID);

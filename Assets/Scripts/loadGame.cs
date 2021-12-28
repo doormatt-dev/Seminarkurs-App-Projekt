@@ -16,3 +16,4 @@ public class loadGame : MonoBehaviour
         UnityEngine.Application.Quit();
     }
 }
+//this doesn't really need it's own script tbh

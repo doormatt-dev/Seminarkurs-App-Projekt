@@ -42,11 +42,11 @@ public class CometPooler : MonoBehaviour
         farenoughMoved = Vector3.Distance(Player.transform.position,previousShipPos) > minDistanceMovedBetweenSpawns;//did you move far enough
         longEnoughDelay = Time.unscaledTime - timeOfLastSpawn >= minTimeBetweenSpawns;// has the min amount of time passed
 
-        if(spawnAutomatically && longEnoughDelay && farenoughMoved)
+        if(spawnAutomatically && longEnoughDelay && farenoughMoved)//determines if it should spawn another comet
         {//only do this if you're supposed to and enough time has passed spawn comets else don't
 
-            GameObject objectToSpawn = GetComet();
-            if(objectToSpawn != null)
+            GameObject objectToSpawn = GetComet();//fetches a new comet object from the children
+            if(objectToSpawn != null)//checks if there was one available
             {
                 //Vector3 spawnpos = Player.transform.position + (Player.GetComponent<Rigidbody>().velocity.normalized * spawndistance);
                 Vector3 spawnpos = previousSpawnPos;
@@ -57,6 +57,7 @@ public class CometPooler : MonoBehaviour
 
                 objectToSpawn.transform.SetPositionAndRotation(spawnpos,Random.rotation);//put it there and roatate to whatever orientation to not make it boring
                 objectToSpawn.SetActive(true);//set it active
+                //variables about previous spawn so comets don't spawn too close or inside each other
                 previousSpawnPos = spawnpos;
                 previousShipPos = Player.transform.position;
                 timeOfLastSpawn = Time.unscaledTime;
@@ -66,7 +67,7 @@ public class CometPooler : MonoBehaviour
     }
 
 
-    public GameObject GetComet()
+    public GameObject GetComet()//this function grabs an inactive comet object from the pool and returns a reference to it
     {
         for(int i = 0; i < Pool_size; i++)
         {
@@ -78,16 +79,16 @@ public class CometPooler : MonoBehaviour
         }
         return null;
     }
-    public GameObject RefrenceObject()
+    public GameObject RefrenceObject()//this is the object that comets refer to when calculating distance to player
     {
         return Player;
     }
 
-    public float despawnDistance()
+    public float despawnDistance()//distance at which the comets despawn entirely
     {
         return despawndistance;
     }
-    public float spawnDistance()
+    public float spawnDistance()//distance at which they appear
     {
         return spawndistance;
     }

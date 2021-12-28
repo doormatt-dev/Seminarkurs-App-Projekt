@@ -4,6 +4,7 @@ using System;
 [Serializable]
 public class SpaceshipDataobject
 {
+    //these are just the parameters for the ships how they appear in the list, these are required to set up the ship completely
     public string shipName;
     public Texture menuImage;
     public GameObject shipPrefab;

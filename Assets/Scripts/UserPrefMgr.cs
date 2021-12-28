@@ -27,27 +27,27 @@ public class UserPrefMgr : MonoBehaviour
             Debug.Log("UserPrefMgr duplicate destroyed");
             Destroy(gameObject);
         }
-        
+        //stuff for setting screen rotation in different scenes
         currentSceneName = SceneManager.GetActiveScene().name;
         if(currentSceneName == "InGame")
-        {
+        {//when playing only allow landscape orientation(s)
             Screen.orientation = ScreenOrientation.Landscape;
             Debug.Log("Rotation set to only Landscape");
-        }else if(currentSceneName == "Startmenu"){
+        }else if(currentSceneName == "Startmenu"){//menus can have any rotation (except upside down)
             Screen.orientation = ScreenOrientation.AutoRotation;
             Screen.autorotateToPortraitUpsideDown = false;
             Debug.Log("Rotation set to Autorotate");
-        }else{
+        }else{//scene doesn't have any settings, default to portrait and lock
             Screen.orientation = ScreenOrientation.Portrait;
             Debug.LogWarning("Unsupported Scene, what rotation settings should it have?");
         }
 
         //Obtain User Prefs
-        graphicsLevel = Mathf.Clamp(PlayerPrefs.GetInt("graphicsLevel", 2), 0, 3);
-        saveSlotNr = PlayerPrefs.GetInt("saveSlot",0);
-        showOnScreenControls = (PlayerPrefs.GetInt("showOSC",1) != 0);
+        graphicsLevel = Mathf.Clamp(PlayerPrefs.GetInt("graphicsLevel", 2), 0, 3);//int for graphics preset 0-3
+        saveSlotNr = PlayerPrefs.GetInt("saveSlot",0);//int for save slot #, not currently supported but eh
+        showOnScreenControls = (PlayerPrefs.GetInt("showOSC",1) != 0);//are on-screen-joysticks on or off?
 
-        UpdateSettings();
+        UpdateSettings();//apply these settings
     }
 
     void UpdateSettings()
@@ -61,10 +61,10 @@ public class UserPrefMgr : MonoBehaviour
             Debug.Log("Graphics quality already set to " + graphicsLevel);
         }
 
-        Debug.Log("Save slot is " + saveSlotNr);
+        Debug.Log("Save slot is " + saveSlotNr);//this is everything the save slot # does
 
         //Show or hide the on screen controls if there are any
-        OSC = GameObject.Find("/UI Canvas/OSC");
+        OSC = GameObject.Find("/UI Canvas/OSC");//see if here even are any controls, there are none in the main menu
         if(OSC != null)
         {
             OSC.SetActive(showOnScreenControls);
@@ -72,11 +72,11 @@ public class UserPrefMgr : MonoBehaviour
         }else{
             Debug.Log("No osc present");
         }
-        SaveSettings();
+        SaveSettings();//this is kinda useless unless some settings were somehow changed
 
     }
 
-    void SaveSettings()
+    void SaveSettings()//take the loaded variables and put their values in the save, simple
     {
 
         PlayerPrefs.SetInt("graphicsLevel", graphicsLevel);
@@ -93,6 +93,7 @@ public class UserPrefMgr : MonoBehaviour
     
     void OnGUI()
     {
+        //this is just a crude FPS counter for debugging
         GUI.Box(new Rect(Screen.width * 0.9f,Screen.height * 0.05f, 80.0f, 30.0f), (1.0f/ Time.deltaTime).ToString());
     }
     

@@ -11,3 +11,4 @@ public class loadHomeMenu : MonoBehaviour
         SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 }
+// i don't know why this has a separate script tbh

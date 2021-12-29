@@ -50,7 +50,12 @@ public class UserPrefMgr : MonoBehaviour
         UpdateSettings();//apply these settings
     }
 
-    void UpdateSettings()
+    void Start()
+    {
+        UpdateSettings();
+    }
+
+    public void UpdateSettings()
     {
         //Set quality level accordingly
         if(UnityEngine.QualitySettings.GetQualityLevel() != graphicsLevel)
@@ -64,7 +69,7 @@ public class UserPrefMgr : MonoBehaviour
         Debug.Log("Save slot is " + saveSlotNr);//this is everything the save slot # does
 
         //Show or hide the on screen controls if there are any
-        OSC = GameObject.Find("/UI Canvas/OSC");//see if here even are any controls, there are none in the main menu
+        OSC = OSCManagment.primaryOSC.gameObject;//see if here even are any controls, there are none in the main menu
         if(OSC != null)
         {
             OSC.SetActive(showOnScreenControls);
@@ -76,7 +81,7 @@ public class UserPrefMgr : MonoBehaviour
 
     }
 
-    void SaveSettings()//take the loaded variables and put their values in the save, simple
+    public void SaveSettings()//take the loaded variables and put their values in the save, simple
     {
 
         PlayerPrefs.SetInt("graphicsLevel", graphicsLevel);

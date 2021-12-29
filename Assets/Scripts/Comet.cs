@@ -5,10 +5,14 @@ using UnityEngine;
 public class Comet : MonoBehaviour
 {
     float scalefactor;
-    GameObject RefrenceObject = CometPooler.CometPool.RefrenceObject();//refrence object should be something attached to the player
-     private float distance;
-    
+    GameObject RefrenceObject;// = CometPooler.CometPool.RefrenceObject();//refrence object should be something attached to the player
+    private float distance;
 
+    void Awake()
+    {
+        RefrenceObject = CometPooler.CometPool.RefrenceObject();
+        if(RefrenceObject == null){Debug.LogError("No refrence object for comet found!");}
+    }
     // Update is called once per frame
     void Update()
     {

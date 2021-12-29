@@ -23,7 +23,7 @@ public class @FlightControls : IInputActionCollection, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""b2003d48-a426-47dd-ba92-01d50b1cf270"",
                     ""expectedControlType"": ""Axis"",
-                    ""processors"": """",
+                    ""processors"": ""AxisDeadzone"",
                     ""interactions"": """"
                 },
                 {

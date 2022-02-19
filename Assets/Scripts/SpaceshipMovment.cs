@@ -135,6 +135,10 @@ public class SpaceshipMovment : MonoBehaviour
         Destroy(childShip);//remove the old one
         
         childShip = Instantiate(Spaceships[newShipID].shipPrefab, transform.position, Quaternion.Euler(transform.forward),self);//get a new one from presets
+        if(childShip == null){
+            Debug.LogWarning("Unable to instantiate new ship!");
+            return;
+        }
         childShip.transform.localRotation = new Quaternion(0,0,0,0);//make sure it's pointing forward
         //childShip.transform.SetParent(self.transform);
         currentAnimator = childShip.GetComponent<Animator>();//get the new animator

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.06544055, g: 0.067073464, b: 0.089005776, a: 1}
+  m_IndirectSpecularColor: {r: 0.06491892, g: 0.06688747, b: 0.0882919, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7377,6 +7377,18 @@ MonoBehaviour:
     smoothtime: 0.2
     maxHP: 100
     animate: 1
+  - shipName: HD ship
+    menuImage: {fileID: 2800000, guid: f254cdaa5bf4b884bb526cd11156a322, type: 3}
+    shipPrefab: {fileID: 6609064952746024837, guid: d72f3635484d49942990d51aef73fefc,
+      type: 3}
+    mass: 3
+    acceleration: 100
+    drag: 0.8
+    angularAcceleration: 3
+    angularDrag: 3
+    smoothtime: 1.5
+    maxHP: 100
+    animate: 1
 --- !u!65 &1428248280
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12892,8 +12904,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Comets: {fileID: 4203503820323958726, guid: f6f7bc0fd97747f4eaf80fc79e048f41, type: 3}
   Pool_size: 40
-  despawndistance: 160
-  spawndistance: 150
+  despawndistance: 200
+  spawndistance: 180
   Player: {fileID: 1428248278}
   spawnAutomatically: 1
   minTimeBetweenSpawns: 0.4

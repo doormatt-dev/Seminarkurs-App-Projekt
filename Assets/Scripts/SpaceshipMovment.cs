@@ -121,13 +121,18 @@ public class SpaceshipMovment : MonoBehaviour
             Debug.Log("Ship " + currentShipID + " is already selected!");
             return;
         }*/
+        if(newShipID >= Spaceships.Length || newShipID < 0)//basic error handling
+        {
+            Debug.LogError("ID of new ship outside of list");
+            return;
+        }
 
-        Destroy(childShip);
+        Destroy(childShip);//remove the old one (even if there wasn't one but eh)
         
         childShip = Instantiate(Spaceships[newShipID].shipPrefab, transform.position, Quaternion.Euler(transform.forward),self);
-        childShip.transform.localRotation = new Quaternion(0,0,0,0);
+        childShip.transform.localRotation = new Quaternion(0,0,0,0);//you want it to definitely be pointing forwards
         //childShip.transform.SetParent(self.transform);
-        currentAnimator = childShip.GetComponent<Animator>();
+        currentAnimator = childShip.GetComponent<Animator>();//grab the animatior once so we don't have to get component all the time
         childShip.SetActive(true);
 
 
@@ -138,12 +143,12 @@ public class SpaceshipMovment : MonoBehaviour
         rigBody.angularDrag = Spaceships[newShipID].angularDrag;
         smoothtime = Spaceships[newShipID].smoothtime;
 
-        currentShipID = newShipID;
+        currentShipID = newShipID;//save that we are now using this ship
 
         Debug.Log("Ship set to '" + Spaceships[newShipID].shipName + "' (" + newShipID + ") and Paramerers loaded!");
     }
     
-    public void cycleShip(){
+    public void cycleShip(){//just goes through the list, really simple
         int newShipID = currentShipID + 1;
         if(newShipID >= Spaceships.Length)
         {

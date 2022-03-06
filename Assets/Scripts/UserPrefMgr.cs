@@ -69,14 +69,15 @@ public class UserPrefMgr : MonoBehaviour
         Debug.Log("Save slot is " + saveSlotNr);//this is everything the save slot # does
 
         //Show or hide the on screen controls if there are any
-        OSC = OSCManagment.primaryOSC.gameObject;//see if here even are any controls, there are none in the main menu
-        if(OSC != null)
+        if(OSCManagment.primaryOSC == null)//see if here even are any controls, there are none in the main menu
         {
-            OSC.SetActive(showOnScreenControls);
-            Debug.Log("onscreen controls set to " + showOnScreenControls);
-        }else{
             Debug.Log("No osc present");
+            return;
         }
+        OSC = OSCManagment.primaryOSC.gameObject;
+        OSC.SetActive(showOnScreenControls);
+        Debug.Log("onscreen controls set to " + showOnScreenControls);
+
         SaveSettings();//this is kinda useless unless some settings were somehow changed
 
     }

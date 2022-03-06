@@ -17,7 +17,7 @@ public class Comet : MonoBehaviour
     void Update()
     {
         distance = Vector3.Magnitude(transform.position - RefrenceObject.transform.position);//ge distance to refrence
-        distanceScale(distance,150.0f,125.0f,new Vector3(0.0f,0.0f,0.0f),new Vector3(10.0f,10.0f,10.0f));
+        distanceScale(distance,175.0f,150.0f,new Vector3(0.0f,0.0f,0.0f),new Vector3(10.0f,10.0f,10.0f));
         if(distance >= CometPooler.CometPool.despawnDistance())//if it's far enough away
         {
             this.gameObject.SetActive(false);//simply deactivate so it can be reused by the object pool

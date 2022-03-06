@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.06491892, g: 0.06688747, b: 0.0882919, a: 1}
+  m_IndirectSpecularColor: {r: 0.064910114, g: 0.0668748, b: 0.08827104, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7008,6 +7008,7 @@ GameObject:
   - component: {fileID: 1351693867}
   - component: {fileID: 1351693871}
   - component: {fileID: 1351693872}
+  - component: {fileID: 1351693873}
   m_Layer: 5
   m_Name: Pause Button
   m_TagString: Untagged
@@ -7168,6 +7169,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 2
   m_AspectRatio: 1
+--- !u!114 &1351693873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351693865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cb393f6c0319f24daecae6f6564fcf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 973873368}
 --- !u!1 &1401923357
 GameObject:
   m_ObjectHideFlags: 0
@@ -7386,7 +7400,7 @@ MonoBehaviour:
     drag: 0.8
     angularAcceleration: 3
     angularDrag: 3
-    smoothtime: 1.5
+    smoothtime: 1
     maxHP: 100
     animate: 1
 --- !u!65 &1428248280
